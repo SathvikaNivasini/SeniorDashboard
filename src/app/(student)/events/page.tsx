@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/PageHeader";
+import NotifyButton from "@/components/NotifyButton";
 import Calendar from "@/components/Calendar";
 import { DateChip, EmptyState } from "@/components/ui";
 import { PinIcon } from "@/components/icons";
@@ -46,6 +47,10 @@ export default function EventsPage() {
         title="Senior Events"
         subtitle="Dress-up days, info sessions, and everything in between."
       />
+
+      <div className="mb-5 flex justify-start lg:justify-end">
+        <NotifyButton />
+      </div>
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_396px]">
         <Calendar events={events} deadlines={deadlines} />

@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/PageHeader";
+import NotifyButton from "@/components/NotifyButton";
 import { DateChip, EmptyState } from "@/components/ui";
 import { PinIcon, ClockIcon } from "@/components/icons";
 import { useHubData } from "@/lib/data-provider";
@@ -57,6 +58,10 @@ export default function DeadlinesPage() {
         title="Key Dates"
         subtitle="Don't let anything sneak up on you this year."
       />
+
+      <div className="mb-5 flex justify-start lg:justify-end">
+        <NotifyButton />
+      </div>
 
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="hub-card p-5 sm:p-6">

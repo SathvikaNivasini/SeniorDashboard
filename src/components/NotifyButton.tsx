@@ -34,7 +34,7 @@ export default function NotifyButton() {
     if (result.ok) {
       setSubscribed(true);
       setState("granted");
-      setNote("You'll get a notification when a new announcement is posted.");
+      setNote("You'll be notified about new announcements, events and deadlines.");
     } else {
       setNote(result.reason);
       setState(getPushState());
