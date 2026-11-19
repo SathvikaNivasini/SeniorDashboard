@@ -1,47 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import { EmptyState } from "@/components/ui";
-import { MegaphoneIcon, BellIcon, PinIcon } from "@/components/icons";
+import { MegaphoneIcon, PinIcon } from "@/components/icons";
+import NotifyButton from "@/components/NotifyButton";
 import { useHubData } from "@/lib/data-provider";
 import { relativeTime, isFresh } from "@/lib/format";
-
-function NotifyButton() {
-  const [state, setState] = useState<NotificationPermission | "unsupported">("default");
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !("Notification" in window)) {
-      setState("unsupported");
-    } else {
-      setState(Notification.permission);
-    }
-  }, []);
-
-  if (state === "unsupported") return null;
-
-  if (state === "granted") {
-    return (
-      <span className="inline-flex items-center gap-2 rounded-full bg-mint px-4 py-2.5 text-[14px] font-medium text-ink">
-        <BellIcon className="h-[17px] w-[17px]" />
-        Notifications on
-      </span>
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={async () => setState(await Notification.requestPermission())}
-      disabled={state === "denied"}
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-[14px] font-medium text-white transition hover:bg-ink/85 disabled:cursor-not-allowed disabled:opacity-45"
-      title={state === "denied" ? "Notifications are blocked in your browser settings" : undefined}
-    >
-      <BellIcon className="h-[17px] w-[17px]" />
-      {state === "denied" ? "Notifications blocked" : "Notify me of new posts"}
-    </button>
-  );
-}
 
 export default function AnnouncementsPage() {
   const { announcements, loading } = useHubData();

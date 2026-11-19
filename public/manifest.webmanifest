@@ -1,0 +1,16 @@
+{
+  "name": "Senior Hub — Coppell High School",
+  "short_name": "Senior Hub",
+  "description": "Announcements, events, deadlines and resources for the senior class.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fdf2ec",
+  "theme_color": "#100d0c",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

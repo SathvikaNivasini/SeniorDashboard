@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  createContext, useCallback, useContext, useEffect, useMemo, useRef, useState,
+  createContext, useCallback, useContext, useEffect, useMemo, useState,
 } from "react";
 import { getBrowserClient } from "@/lib/supabase/client";
 import { startOfToday, parseDateOnly } from "@/lib/format";
@@ -35,8 +35,6 @@ export function HubDataProvider({ children }: { children: React.ReactNode }) {
   const [resources, setResources] = useState<Resource[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const knownAnnouncementIds = useRef<Set<string> | null>(null);
 
   const refresh = useCallback(async () => {
     const [a, e, d, i, r] = await Promise.all([
@@ -72,18 +70,7 @@ export function HubDataProvider({ children }: { children: React.ReactNode }) {
 
     const channel = supabase
       .channel("senior-hub-live")
-      .on("postgres_changes", { event: "*", schema: "public" }, (payload) => {
-        // A new announcement is the one thing worth interrupting a student for.
-        if (
-          payload.table === "announcements" &&
-          payload.eventType === "INSERT" &&
-          knownAnnouncementIds.current
-        ) {
-          const row = payload.new as Announcement;
-          if (!knownAnnouncementIds.current.has(row.id)) {
-            notifyNewAnnouncement(row.title);
-          }
-        }
+      .on("postgres_changes", { event: "*", schema: "public" }, () => {
         void refresh();
       })
       .subscribe();
@@ -93,12 +80,6 @@ export function HubDataProvider({ children }: { children: React.ReactNode }) {
     };
   }, [supabase, refresh]);
 
-  // Track which announcements we've already seen so realtime can spot new ones.
-  useEffect(() => {
-    if (!loading) {
-      knownAnnouncementIds.current = new Set(announcements.map((a) => a.id));
-    }
-  }, [announcements, loading]);
 
   const value = useMemo<HubData>(() => {
     const today = startOfToday();
@@ -122,16 +103,3 @@ export function useHubData() {
   return ctx;
 }
 
-function notifyNewAnnouncement(title: string) {
-  if (typeof window === "undefined" || !("Notification" in window)) return;
-  if (Notification.permission !== "granted") return;
-  try {
-    new Notification("Senior Hub — new announcement", {
-      body: title,
-      icon: "/icon.svg",
-      tag: "senior-hub-announcement",
-    });
-  } catch {
-    // Notification constructor is unavailable in some embedded browsers.
-  }
-}

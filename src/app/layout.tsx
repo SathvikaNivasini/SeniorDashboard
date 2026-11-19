@@ -26,6 +26,15 @@ export const metadata: Metadata = {
   title: "Senior Hub — Coppell High School",
   description:
     "Your one-stop hub for all senior information. Announcements, events, deadlines and resources for the Class of 2027.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Senior Hub",
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
