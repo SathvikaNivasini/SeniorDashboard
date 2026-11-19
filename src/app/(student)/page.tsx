@@ -60,8 +60,8 @@ export default function StudentHome() {
                 Check the latest updates on senior events, deadlines, and more!
               </span>
             </span>
-            <span className="hidden shrink-0 items-center gap-2 text-[15px] font-semibold text-gold-deep transition group-hover:text-ink sm:flex">
-              View All
+            <span className="flex shrink-0 items-center gap-2 text-[15px] font-semibold text-gold-deep transition group-hover:text-ink">
+              <span className="hidden sm:inline">View All</span>
               <ArrowRightIcon className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>
@@ -113,10 +113,12 @@ export default function StudentHome() {
                 <Link
                   key={label}
                   href={href}
-                  className={`group relative flex h-[132px] flex-col items-center justify-center gap-2.5 rounded-[22px] px-3 transition-transform duration-200 hover:-translate-y-0.5 ${tint}`}
+                  className={`group relative flex h-[140px] flex-col items-center justify-center gap-2.5 rounded-[22px] px-3 pb-11 transition-transform duration-200 hover:-translate-y-0.5 ${tint}`}
                 >
                   <Icon className="h-7 w-7 text-ink" strokeWidth={1.8} />
-                  <span className="text-center text-[15px] font-semibold text-ink">{label}</span>
+                  <span className="text-center text-[14.5px] font-semibold leading-tight text-ink sm:text-[15px]">
+                    {label}
+                  </span>
                   <ArrowChip className="absolute bottom-3 right-3" />
                 </Link>
               ))}
@@ -172,6 +174,7 @@ export default function StudentHome() {
                 icon={<AlertIcon className="h-[22px] w-[22px]" />}
                 title="Upcoming Events"
                 chipClass="bg-[#fde0dd] text-[#c1272d] rounded-full"
+                titleClass="text-[19px] sm:text-[23px] whitespace-nowrap"
               />
               <ViewAll href="/events" />
             </div>

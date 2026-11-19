@@ -33,7 +33,7 @@ export function ViewAll({ href, label = "View All" }: { href: string; label?: st
   return (
     <Link
       href={href}
-      className="group inline-flex shrink-0 items-center gap-2 text-[15px] font-semibold text-gold-deep transition hover:text-ink"
+      className="group -my-2 inline-flex min-h-[40px] shrink-0 items-center gap-2 py-2 text-[15px] font-semibold text-gold-deep transition hover:text-ink"
     >
       {label}
       <ArrowRightIcon className="h-[18px] w-[18px] transition-transform group-hover:translate-x-0.5" />

@@ -116,10 +116,12 @@ export default function AdminDashboard() {
               <Link
                 key={label}
                 href={href}
-                className={`group relative flex h-[126px] flex-col items-center justify-center gap-2.5 rounded-[22px] px-3 transition-transform duration-200 hover:-translate-y-0.5 ${tint}`}
+                className={`group relative flex h-[140px] flex-col items-center justify-center gap-2.5 rounded-[22px] px-3 pb-11 transition-transform duration-200 hover:-translate-y-0.5 ${tint}`}
               >
                 <Icon className="h-7 w-7 text-ink" strokeWidth={1.8} />
-                <span className="text-center text-[14.5px] font-semibold text-ink">{label}</span>
+                <span className="text-center text-[14px] font-semibold leading-tight text-ink sm:text-[14.5px]">
+                  {label}
+                </span>
                 <ArrowChip className="absolute bottom-3 right-3" />
               </Link>
             ))}
