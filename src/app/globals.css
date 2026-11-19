@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0d0b0a;
+  --color-sidebar: #100d0c;
+
+  --color-cream: #fdf2ec;
+  --color-cream-deep: #f9e4d9;
+  --color-card: #fffbf8;
+
+  --color-gold: #f2a64c;
+  --color-gold-light: #fbcb8a;
+  --color-gold-deep: #e08f2e;
+
+  --color-peach: #fadcbf;
+  --color-peach-soft: #fceadb;
+  --color-mint: #d6e6e0;
+  --color-lavender: #e2d9f6;
+  --color-blush: #fadcd2;
+
+  --font-display: var(--ff-serif), "Iowan Old Style", Georgia, serif;
+  --font-body: var(--ff-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--ff-script), "Snell Roundhand", cursive;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: #fdf2ec;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared surface treatments ------------------------------------------- */
+.hub-canvas {
+  background:
+    radial-gradient(130% 90% at 100% 0%, #fdeadf 0%, rgba(253,234,223,0) 55%),
+    linear-gradient(160deg, #fdf3ee 0%, #fbe8de 100%);
+}
+
+.hub-card {
+  background: var(--color-card);
+  border: 1px solid rgba(221, 180, 145, 0.26);
+  border-radius: 28px;
+  box-shadow: 0 1px 2px rgba(120, 72, 32, 0.04), 0 10px 30px -22px rgba(120, 72, 32, 0.35);
+}
+
+.gold-pill {
+  background: linear-gradient(135deg, #fbc271 0%, #f2a147 52%, #ef9a3c 100%);
+}
+
+.gold-text {
+  background: linear-gradient(120deg, #f9cd8d 0%, #eeb063 50%, #e8a04a 100%);
+}
+
+.ray { transform-origin: center; }
+
+/* Scrollbar ------------------------------------------------------------ */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: rgba(196, 146, 100, 0.3);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover { background-color: rgba(196, 146, 100, 0.5); background-clip: content-box; }
+
+@keyframes hub-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in-up { animation: hub-fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
